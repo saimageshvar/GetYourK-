@@ -12,19 +12,20 @@
 		end
 
 		def generateCoverPic(user)
-			base_url = "https://evening-savannah-73837.herokuapp.com/"
-			first_image  = MiniMagick::Image.open("#{base_url}/base.jpg")
-			second_image = MiniMagick::Image.open("#{base_url}#{user.avatar.url}")
+			first_image  = MiniMagick::Image.open("#{Rails.root}/public/base.jpg")
+			end_index = user.avatar.url.rindex('?')
+			url = user.avatar.url[0..end_index-1]
+			second_image = MiniMagick::Image.open("#{Rails.root}/public#{url}")
 			second_image.resize "200x200"
 			result = first_image.composite(second_image) do |c|
   				c.compose "Over"    # OverCompositeOp
   				c.geometry "+586+84" # copy second_image onto first_image from (20, 20)
   			end	
   			send_file(
-  			result.path,
-  			filename: user.id,
-  			type: "image/png"
-  			)
+  				result.path,
+  				filename: user.id,
+  				type: "image/png"
+  				)
   		end	
 
   		private
