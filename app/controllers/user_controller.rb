@@ -20,7 +20,11 @@
   				c.compose "Over"    # OverCompositeOp
   				c.geometry "+586+84" # copy second_image onto first_image from (20, 20)
   			end	
-  			result.write "#{Rails.root}/public/output.jpg"
+  			send_file(
+  			result.path,
+  			filename: user.id,
+  			type: "image/png"
+  			)
   		end	
 
   		private
