@@ -14,7 +14,7 @@
 		def generateCoverPic(user)
 			base_url = "https://evening-savannah-73837.herokuapp.com/"
 			first_image  = MiniMagick::Image.open("#{base_url}/base.jpg")
-			second_image = MiniMagick::Image.open("l#{base_url}#{user.avatar.url}")
+			second_image = MiniMagick::Image.open("#{base_url}#{user.avatar.url}")
 			second_image.resize "200x200"
 			result = first_image.composite(second_image) do |c|
   				c.compose "Over"    # OverCompositeOp
