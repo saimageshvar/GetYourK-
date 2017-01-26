@@ -12,14 +12,14 @@
 		end
 
 		def generateCoverPic(user)
-			first_image  = MiniMagick::Image.open("#{Rails.root}/public/base.jpg")
+			first_image  = MiniMagick::Image.open("#{Rails.root}/public/overlay.png")
 			end_index = user.avatar.url.rindex('?')
 			url = user.avatar.url[0..end_index-1]
 			second_image = MiniMagick::Image.open("#{Rails.root}/public#{url}")
-			second_image.resize "200x200"
-			result = first_image.composite(second_image) do |c|
+			second_image.resize "589x585"
+			result = second_image.composite(first_image) do |c|
   				c.compose "Over"    # OverCompositeOp
-  				c.geometry "+586+84" # copy second_image onto first_image from (20, 20)
+  				c.geometry "+0+0" # copy second_image onto first_image from (20, 20)
   			end	
   			send_file(
   				result.path,
