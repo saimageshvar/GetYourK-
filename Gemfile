@@ -29,8 +29,8 @@ gem "mini_magick"
 gem "paperclip", "~> 5.0.0"
 
 group :production do
-  # gem 'pg', '0.18.4'
-  gem 'sqlite3'
+  gem 'pg', '0.18.4'
+  # gem 'sqlite3'
 
 end
 
