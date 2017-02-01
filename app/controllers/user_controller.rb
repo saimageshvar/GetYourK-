@@ -23,7 +23,7 @@
   			end	
   			send_file(
   				result.path,
-  				filename: user.id + ".png",
+  				filename: "dp." + result.type.to_s,
   				type: "image/png"
   				)
   		end	
